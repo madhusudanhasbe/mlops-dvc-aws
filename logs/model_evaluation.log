@@ -1,0 +1,15 @@
+2025-07-24 04:28:15,098 - model_evaluation - DEBUG - Parameters retrieved from params.yaml
+2025-07-24 04:28:15,329 - model_evaluation - DEBUG - Model loaded from ./model/model.pkl
+2025-07-24 04:28:15,341 - model_evaluation - DEBUG - Test Data Loaded from ./data/processed/test_tfidf.csv
+2025-07-24 04:28:15,362 - model_evaluation - DEBUG - Model Evaluation are accuracy: 0.963899 , precision : 0.875000, recall : 0.750000, auc: 0.868976
+2025-07-24 04:28:16,091 - model_evaluation - DEBUG - Metrics save to reports/metrics.json
+2025-07-24 04:32:48,260 - model_evaluation - DEBUG - Parameters retrieved from params.yaml
+2025-07-24 04:32:48,406 - model_evaluation - DEBUG - Model loaded from ./model/model.pkl
+2025-07-24 04:32:48,416 - model_evaluation - DEBUG - Test Data Loaded from ./data/processed/test_tfidf.csv
+2025-07-24 04:32:48,434 - model_evaluation - DEBUG - Model Evaluation are accuracy: 0.963899 , precision : 0.875000, recall : 0.750000, auc: 0.868976
+2025-07-24 04:32:48,832 - model_evaluation - ERROR - Unexpected error : Empty git repo
+2025-07-24 04:34:55,229 - model_evaluation - DEBUG - Parameters retrieved from params.yaml
+2025-07-24 04:34:55,449 - model_evaluation - DEBUG - Model loaded from ./model/model.pkl
+2025-07-24 04:34:55,469 - model_evaluation - DEBUG - Test Data Loaded from ./data/processed/test_tfidf.csv
+2025-07-24 04:34:55,491 - model_evaluation - DEBUG - Model Evaluation are accuracy: 0.963899 , precision : 0.875000, recall : 0.750000, auc: 0.868976
+2025-07-24 04:34:56,349 - model_evaluation - DEBUG - Metrics save to reports/metrics.json
