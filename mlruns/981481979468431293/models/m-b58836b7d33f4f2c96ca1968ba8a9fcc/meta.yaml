@@ -1,0 +1,10 @@
+artifact_location: file:///mnt/c/Users/Madhusudan/Desktop/mlops_dvc_aws/mlruns/981481979468431293/models/m-b58836b7d33f4f2c96ca1968ba8a9fcc/artifacts
+creation_timestamp: 1754539154164
+experiment_id: '981481979468431293'
+last_updated_timestamp: 1754539163964
+model_id: m-b58836b7d33f4f2c96ca1968ba8a9fcc
+model_type: null
+name: e6afadd625264bc69443041d2984cea5
+source_run_id: e6afadd625264bc69443041d2984cea5
+status: 2
+status_message: null

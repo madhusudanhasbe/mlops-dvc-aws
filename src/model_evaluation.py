@@ -116,26 +116,35 @@ def save_metrics(metrics: dict, file_path: str) -> None:
         raise
 
 def main():
+    import mlflow
+    mlflow.set_tracking_uri(f"file://{os.path.abspath('mlruns')}")
+    mlflow.set_experiment('Spam-Classifier-Pipeline')
+
     try:
-        params = load_params(params_path='params.yaml')
-        clf = load_model('./model/model.pkl')
-        test_data = load_data('./data/processed/test_tfidf.csv')
-        
-        X_test = test_data.iloc[:,:-1].values
-        y_test = test_data.iloc[:,-1].values
-        
-        metrics = evaluate_model(clf, X_test, y_test)
+        with mlflow.start_run(run_name='eval', nested = True):
+            #mlflow.autolog()
+            params = load_params(params_path='params.yaml')
+            clf = load_model('./model/model.pkl')
+            test_data = load_data('./data/processed/test_tfidf.csv')
             
+            X_test = test_data.iloc[:,:-1].values
+            y_test = test_data.iloc[:,-1].values
             
-            
-        # Experiment Tracking Uisng DVClive       
-        with Live(save_dvc_exp=True) as live:
-            live.log_metric('accuracy', accuracy_score(y_test,y_test))
-            live.log_metric('precision', precision_score(y_test,y_test))
-            live.log_metric('recall',recall_score(y_test,y_test))
-            live.log_params(params)
-              
-        save_metrics(metrics,'reports/metrics.json')
+            metrics = evaluate_model(clf, X_test, y_test)
+                
+                
+                
+            # Experiment Tracking Uisng DVClive       
+            with Live(save_dvc_exp=True) as live:
+                live.log_metric('accuracy', accuracy_score(y_test,y_test))
+                live.log_metric('precision', precision_score(y_test,y_test))
+                live.log_metric('recall',recall_score(y_test,y_test))
+                live.log_params(params)
+                
+            save_metrics(metrics,'reports/metrics.json')
+
+            mlflow.log_metrics(metrics)
+            mlflow.log_artifact('reports/metrics.json')
     except Exception as e:
         logger.error('Unexpected error : %s',e)
         print('Error{e}')

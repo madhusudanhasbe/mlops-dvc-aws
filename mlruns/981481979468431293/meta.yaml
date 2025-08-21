@@ -1,0 +1,6 @@
+artifact_location: file:///mnt/c/Users/Madhusudan/Desktop/mlops_dvc_aws/mlruns/981481979468431293
+creation_time: 1754539150104
+experiment_id: '981481979468431293'
+last_update_time: 1754539150104
+lifecycle_stage: active
+name: Spam-Classifier-Pipeline

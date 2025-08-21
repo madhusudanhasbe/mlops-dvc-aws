@@ -102,16 +102,25 @@ def save_model(model, file_path: str) -> None:
 
 #Main
 def main():
+    import mlflow
+    mlflow.set_tracking_uri(f"file://{os.path.abspath('mlruns')}")
+    mlflow.set_experiment('Spam-Classifier-Pipeline')
     try:
-        params = load_params('params.yaml')['model_building']
-        train_data = load_csv('./data/processed/train_tfidf.csv')
-        X_train = train_data.iloc[:,:-1].values
-        y_train = train_data.iloc[:,-1].values
-        
-        clf = train_model(X_train, y_train, params)
-        
-        model_save_path = 'model/model.pkl'
-        save_model(clf, model_save_path)
+        with mlflow.start_run(run_name='train'):
+            #mlflow.autolog()
+            params = load_params('params.yaml')['model_building']
+            mlflow.log_params(params)
+            train_data = load_csv('./data/processed/train_tfidf.csv')
+            X_train = train_data.iloc[:,:-1].values
+            y_train = train_data.iloc[:,-1].values
+            
+            clf = train_model(X_train, y_train, params)
+            print(f"Run ID: {mlflow.active_run().info.run_id}")
+            
+            model_save_path = 'model/model.pkl'
+            save_model(clf, model_save_path)
+
+            mlflow.sklearn.log_model(clf, f"{mlflow.active_run().info.run_id}")
     
     except Exception as e:
         logger.error('Failed to build model %s',e)
