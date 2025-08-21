@@ -10,8 +10,11 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../s
 
 # Mock nltk.download to avoid downloads in CI
 import nltk
-nltk.download = lambda *args, **kwargs: None
-
+# nltk.download = lambda *args, **kwargs: None
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+nltk.download('wordnet')
 # Imports from src/
 from src import data_ingestion as di
 from src import data_preprocessing as dp
